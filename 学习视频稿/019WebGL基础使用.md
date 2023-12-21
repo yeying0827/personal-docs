@@ -205,7 +205,7 @@ gl.enableVertexAttribArray(vPosition);
 
 着色器程序和数据都准备好了之后，GPU就可以调用着色器程序并完成图形的绘制了。
 
-首先，我们先调用`gl.clear`将当前画布的内容清除，就类似于Canvas2D中的clearReact。
+首先，我们先调用`gl.clear`将当前画布的内容清除，就类似于Canvas2D中的clearRect。
 
 ```javascript
 gl.clear(gl.COLOR_BUFFER_BIT);
