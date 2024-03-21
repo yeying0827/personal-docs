@@ -84,7 +84,7 @@ tabindex这个属性可以使HTML元素获得焦点，比如：
 
 > Using a `visibility` value of `hidden` on an element will remove it from the [accessibility tree](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/What_is_accessibility#accessibility_apis). This will cause the element and all its descendant elements to no longer be announced by screen reading technology.
 
-它的意思是，设置了hidden的元素将从可访问树上被移除，其中的内容无法被无障碍阅读设备读取，总体来说，就是将这个被设置了`visibility: hidden`的元素当做完全不存在，直接跳过，在页面审查元素的时候，也无法选中这个元素。
+它的意思是，设置了hidden的元素将从**可访问树上**被移除，其中的内容无法被无障碍阅读设备读取，总体来说，就是将这个被设置了`visibility: hidden`的元素当做完全不存在，直接跳过，在页面审查元素的时候，也无法在页面上选中这个元素。
 
 
 
@@ -101,13 +101,25 @@ tabindex这个属性可以使HTML元素获得焦点，比如：
 
 **其次**我们还要考虑一件事，就是通常来说，如果某个元素页面上不需要展示，我们直接可以不写，但既然我们写了，那么这个隐藏元素就可能出现在页面上，也就是说显示/隐藏的状态会发生切换。
 
-这个时候我们就要考虑回流重排的问题，因为元素在设置`display: none`时不参与布局的计算，在状态切换为显示时，又会参与布局，这就会使渲染树的节点发生改变，导致触发浏览器回流并重新生成渲染树；频繁的切换状态就会导致频繁地触发回流重排，影响页面渲染性能，所以在有状态切换的场景，尤其是频繁切换，更推荐优先使用`visibility: hidden`。
+这个时候我们就要考虑回流重排的问题，因为元素在设置`display: none`时不参与布局的计算，在状态切换为显示时，又会参与布局，这就会使**渲染树**的节点发生改变，导致触发浏览器回流并重新生成渲染树；频繁的切换状态就会导致频繁地触发回流重排，影响页面渲染性能，所以在有状态切换的场景，尤其是频繁切换，更推荐优先使用`visibility: hidden`。
 
 并且使用`visibility: hidden`还可以设置一些过渡的显示效果（transition）。
 
 但**还要注意一个问题**，就是元素设置`visibility: hidden`后，就无法与之交互，如果遇到一些特殊的业务需求，比如需要与不可见元素发生交互，或者能够被无障碍阅读设备读取，这个时候就不能这样用了，这个时候可以考虑使用`opacity: 0`，将元素的透明度设置为0，这样除了变成完全透明，其他方面与普通元素没什么不同。
 
 **那`display: none`这么多缺点，是不是就要抛弃不用呢？** 那倒也不是这么绝对，比如有种情况，在页面加载的时候，根据某些值来判断是否显示某个元素，并且后续基本很少切换状态，那简单使用`display: none`也是没有问题的。
+
+
+
+v-if false：直接不生成dom节点 => 不在dom树上
+
+v-show false：=display:none    => 在dom树上，不在渲染树上
+
+​                             visibility:hidden => 在渲染树上，不在可访问树上（注意后缀，-ability代表一种能力）
+
+​                             opacity:0 => 在渲染树上，在可访问树上
+
+​                              width:0 => 在渲染树上，在可访问树上，不占空间
 
 
 
@@ -119,7 +131,7 @@ width: 0是水（液态），但摸得着（可以获得焦点），触碰它可
 
 visibility: hidden是空气（气态，无形），虽然看不见也摸不着（无法获得焦点），但是是真实存在的气态物质
 
-以上三种都是存在的物质，固体和液体可以摸得着（获得焦点），但是气体摸不着（无法获得焦点）；所以在渲染树上都会存在。
+以上三种都是存在的物质，固体和液体可以触摸（获得焦点），但是气体摸不着（无法获得焦点）；所以在渲染树上都会存在。
 
 而display: none可以理解成没有肉身，只有能量态，比如一个按钮被设为`display: none`，它仍旧可以被触发点击事件，它这个能量（功能）还存在。
 

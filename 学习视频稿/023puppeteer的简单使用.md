@@ -227,3 +227,6 @@ diff.run(function (error, result) {
 
 好啦，以上就是puppeteer的简单使用，有感兴趣的小伙伴可以继续阅读[官方文档](https://pptr.dev/)深入研究。
 
+
+
+[完整代码参考](https://github.com/yeying0827/learnFE/blob/master/mini_test/demo10/check1.js)

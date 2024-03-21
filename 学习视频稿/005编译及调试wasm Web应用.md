@@ -223,3 +223,5 @@ $ emcc index.cc -gsource-map -s WASM=1 -O3 --no-entry -o index.wasm
 通过这种方式，开发者就可以方便地在wasm Web应用的运行过程中，调试发生在wasm模块内部的“源码级”错误。
 
 WebAssembly作为一种相对较新的技术，可以先保持一点了解。
+
+[部分代码参考](https://github.com/yeying0827/learnFE/tree/master/mini_test/demo2)

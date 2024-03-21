@@ -131,12 +131,20 @@ y = y0 + y1
   ```
 
   根据线性代数的知识，我们可以使用矩阵的形式来表示以上公式：
-
-  ```
-  [x]   [cosα  -sinα]   [x0]
-  | | = |           | x |  |
-  [y]   [sinα   cosα]   [y0]
-  ```
+  $$
+  \begin{bmatrix}
+   x \\
+   y 
+  \end{bmatrix} =
+  \begin{bmatrix}
+   cosα & -sinα\\
+   sinα & cosα\\
+  \end{bmatrix} \times 
+  \begin{bmatrix}
+   x0\\
+   y0
+  \end{bmatrix}
+  $$
 
 * 缩放
 
@@ -150,12 +158,20 @@ y = y0 + y1
   ```
 
   缩放比旋转简单一些，可以直接写出矩阵形式的公式：
-
-  ```
-  [x]   [sx  0]   [x0]
-  | | = |     | x |  |
-  [y]   [0  sy]   [y0]
-  ```
+  $$
+  \begin{bmatrix}
+   x \\
+   y 
+  \end{bmatrix} =
+  \begin{bmatrix}
+   s_x & 0\\
+   0 & s_y\\
+  \end{bmatrix} \times 
+  \begin{bmatrix}
+   x0\\
+   y0
+  \end{bmatrix}
+  $$
 
 至此，我们就基本了解了仿射变换的公式，并且可以看出线性变换的公式可以用矩阵相乘的形式进行表示。
 
@@ -172,13 +188,20 @@ M为多个线性变换的叠加结果，也就是变换矩阵的相乘结果，P
 #### 公式优化
 
 为了便于计算，我们还可以对以上的仿射变换表达式进行优化，通过增加维度来使用矩阵进行表示：
-
-```
-[P]   [M  P1]   [P0]
-| | = |     | x |  |
-[1]   [0   1]   [1 ]
-```
-
+$$
+\begin{bmatrix}
+ P \\
+ 1 
+\end{bmatrix} =
+\begin{bmatrix}
+ M & P1\\
+ 0 & 1\\
+\end{bmatrix} \times 
+\begin{bmatrix}
+ P0\\
+ 1
+\end{bmatrix}
+$$
 这实际上就是给线性空间增加了一个维度，用高维度的线性变换表示了低维度的仿射变换。
 
 这种n+1维坐标被称为**齐次坐标**，对应的矩阵被称为**齐次矩阵**。
@@ -334,3 +357,7 @@ combine.style.setProperty('--trans', `matrix(
 
 也许在普通的前端开发中，用不到太多，也并不太需要说去利用matrix去减少CSS的代码体积，但如果要去做可视化方面的开发，仿射变换还是可以多去了解一下。
 
+
+
+[整体代码](https://github.com/yeying0827/visualization-demos/blob/main/src/pages/Transform/CSS.vue)
+[效果](https://yeying0827.github.io/visualization-demos/#/transform/css)

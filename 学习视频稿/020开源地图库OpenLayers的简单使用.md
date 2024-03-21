@@ -202,4 +202,4 @@ OpenLayers使用起来不像高德地图那么方便，因为部署的是内网�
 
 <img src="./imgs/ol-demo.gif" alt="ol-demo" style="zoom:100%;" />
 
-整体代码参考这个[CodePen](https://codepen.io/yeying0827/pen/WNPWyOW)
+整体代码参考[这里](https://github.com/yeying0827/learnFE/tree/master/mini_test/demo8)
